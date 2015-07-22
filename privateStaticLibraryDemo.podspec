@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 
   s.name         = "privateStaticLibraryDemo"
   s.version      = "0.0.1"
-  s.summary      = "A short description of privateStaticLibraryDemo."
+  s.summary      = "A private static library for iOS with CocoaPods."
 
   s.description  = <<-DESC
                    A longer description of privateStaticLibraryDemo in Markdown format.
@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
                    * Finally, don't worry about the indent, CocoaPods strips it!
                    DESC
 
-  s.homepage     = "http://EXAMPLE/privateStaticLibraryDemo"
+  s.homepage     = "https://github.com/federicomazzini/privateStaticLibraryDemo"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -78,7 +78,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "http://github.com/federicomazzini/privateStaticLibraryDemo", :tag => "0.0.1" }
+  s.source       = { :git => "https://github.com/federicomazzini/privateStaticLibraryDemo.git", :tag => "0.0.1" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
