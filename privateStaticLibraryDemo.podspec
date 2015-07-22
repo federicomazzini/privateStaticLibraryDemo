@@ -39,8 +39,8 @@ Pod::Spec.new do |s|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  #s.license      = "MIT"
-  s.license      = { :type => "MIT", :file => "LICENSE.txt" }
+  s.license      = "MIT"
+  s.license      = { :type => "MIT", :file => "./LICENSE.txt" }
 
 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -89,7 +89,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "Classes", "./privateStaticLibraryDemo/**/*.{h,m}"
+  s.source_files  = "privateStaticLibraryDemo", "./privateStaticLibraryDemo/*.{h,m}"
   #s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
