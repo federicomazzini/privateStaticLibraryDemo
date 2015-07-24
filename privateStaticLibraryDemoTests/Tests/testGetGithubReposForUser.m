@@ -10,6 +10,8 @@
 #import <XCTest/XCTest.h>
 #import "privateStaticLibraryDemo.h"
 
+NSString * const GITHUB_USERNAME = @"federicomazzini";
+
 @interface testGetGithubReposForUser : XCTestCase
 
 @end
@@ -38,10 +40,52 @@
 //    }];
 //}
 
-- (void)testGetReposForFede
+- (void)testGetReposForBurczyk
 {
-    privateStaticLibraryDemo *nl = [[privateStaticLibraryDemo alloc] init];
-    XCTAssertNotNil(nl, @"");
+    __block id JSON;
+    
+    hxRunInMainLoop(^(BOOL *done) {
+        privateStaticLibraryDemo *nl = [[privateStaticLibraryDemo alloc] init];
+        [nl getGithubReposForUser:GITHUB_USERNAME withSuccess:^(id responseObject) {
+            NSLog(@"Response: %@", responseObject);
+            JSON = responseObject;
+            *done = YES;
+        } failure:^(NSError *error) {
+            *done = YES;
+        }];
+    });
+    
+    XCTAssertNotNil(JSON, @"");
+}
+
+- (void)testGetRepoForNotExistingUser
+{
+    __block id JSON;
+    
+    NSString* notExistingUser = [[NSString alloc]init];
+    notExistingUser = [GITHUB_USERNAME stringByAppendingString:@"1234567890zzz"];
+    
+    hxRunInMainLoop(^(BOOL *done) {
+        privateStaticLibraryDemo *nl = [[privateStaticLibraryDemo alloc] init];
+        [nl getGithubReposForUser:notExistingUser withSuccess:^(id responseObject) {
+            NSLog(@"Response: %@", responseObject);
+            JSON = responseObject;
+            *done = YES;
+        } failure:^(NSError *error) {
+            *done = YES;
+        }];
+    });
+    
+    XCTAssertNil(JSON, @"");
+}
+
+// Wrapper to test async methods: http://stackoverflow.com/questions/2162213/how-to-unit-test-asynchronous-apis
+static inline void hxRunInMainLoop(void(^block)(BOOL *done)) {
+    __block BOOL done = NO;
+    block(&done);
+    while (!done) {
+        [[NSRunLoop mainRunLoop] runUntilDate: [NSDate dateWithTimeIntervalSinceNow:.1]];
+    }
 }
 
 @end

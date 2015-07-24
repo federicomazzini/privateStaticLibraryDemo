@@ -20,13 +20,8 @@ Pod::Spec.new do |s|
   s.summary      = "A private static library for iOS with CocoaPods."
 
   s.description  = <<-DESC
-                   A longer description of privateStaticLibraryDemo in Markdown format.
-
-                   * Think: Why did you write this? What is the focus? What does it do?
-                   * CocoaPods will be using this to generate tags, and improve search results.
-                   * Try to keep it short, snappy and to the point.
-                   * Finally, don't worry about the indent, CocoaPods strips it!
-                   DESC
+			A private static library for iOS with CocoaPods.
+			DESC
 
   s.homepage     = "https://github.com/federicomazzini/privateStaticLibraryDemo"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"

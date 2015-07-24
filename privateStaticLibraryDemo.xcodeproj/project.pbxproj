@@ -6,12 +6,28 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		EA414F411B61604000331FF4 /* AutomaticBuildManyArchitectures */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = EA414F441B61604100331FF4 /* Build configuration list for PBXAggregateTarget "AutomaticBuildManyArchitectures" */;
+			buildPhases = (
+				EA414F451B61604800331FF4 /* ShellScript */,
+				EA414F461B61678800331FF4 /* CopyFiles */,
+			);
+			dependencies = (
+			);
+			name = AutomaticBuildManyArchitectures;
+			productName = AutomaticBuildManyArchitectures;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		C44F50340F2A94340DF7E7C4 /* libPods-privateStaticLibraryDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45737162AF0CF5E3D5292C75 /* libPods-privateStaticLibraryDemo.a */; };
 		EA00329A1B5E84D30011D899 /* privateStaticLibraryDemo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = EA0032991B5E84D30011D899 /* privateStaticLibraryDemo.h */; };
 		EA00329C1B5E84D30011D899 /* privateStaticLibraryDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = EA00329B1B5E84D30011D899 /* privateStaticLibraryDemo.m */; };
 		EA0032A21B5E84D30011D899 /* libprivateStaticLibraryDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA0032961B5E84D30011D899 /* libprivateStaticLibraryDemo.a */; };
 		EA0A147A1B6017FA008CC0C5 /* testGetGithubReposForUser.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0A14791B6017FA008CC0C5 /* testGetGithubReposForUser.m */; };
+		EA414F471B6167A100331FF4 /* privateStaticLibraryDemo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = EA0032991B5E84D30011D899 /* privateStaticLibraryDemo.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +48,16 @@
 			dstSubfolderSpec = 16;
 			files = (
 				EA00329A1B5E84D30011D899 /* privateStaticLibraryDemo.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA414F461B61678800331FF4 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "${TARGET_BUILD_DIR}/../privateStaticLibraryDemoLib";
+			dstSubfolderSpec = 0;
+			files = (
+				EA414F471B6167A100331FF4 /* privateStaticLibraryDemo.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,6 +221,9 @@
 					EA0032A01B5E84D30011D899 = {
 						CreatedOnToolsVersion = 6.3.2;
 					};
+					EA414F411B61604000331FF4 = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
 				};
 			};
 			buildConfigurationList = EA0032911B5E84D30011D899 /* Build configuration list for PBXProject "privateStaticLibraryDemo" */;
@@ -211,6 +240,7 @@
 			targets = (
 				EA0032951B5E84D30011D899 /* privateStaticLibraryDemo */,
 				EA0032A01B5E84D30011D899 /* privateStaticLibraryDemoTests */,
+				EA414F411B61604000331FF4 /* AutomaticBuildManyArchitectures */,
 			);
 		};
 /* End PBXProject section */
@@ -255,6 +285,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		EA414F451B61604800331FF4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "xcodebuild -workspace privateStaticLibraryDemo.xcworkspace -scheme privateStaticLibraryDemo -sdk iphonesimulator -configuration Debug\nxcodebuild -workspace privateStaticLibraryDemo.xcworkspace -scheme privateStaticLibraryDemo -sdk iphoneos -configuration Debug\n\n# make a new output folder\nmkdir -p ${TARGET_BUILD_DIR}/../privateStaticLibraryDemoLib\n\n# combine lib files for various platforms into one\nlipo -create \"${TARGET_BUILD_DIR}/../Debug-iphoneos/libprivateStaticLibraryDemo.a\" \"${TARGET_BUILD_DIR}/../Debug-iphonesimulator/libprivateStaticLibraryDemo.a\" -output \"${TARGET_BUILD_DIR}/../privateStaticLibraryDemoLib/libprivateStaticLibraryDemo-debug-${CURRENT_PROJECT_VERSION}.a\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -418,6 +461,22 @@
 			};
 			name = Release;
 		};
+		EA414F421B61604100331FF4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 0.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		EA414F431B61604100331FF4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 0.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -444,6 +503,15 @@
 			buildConfigurations = (
 				EA0032AE1B5E84D30011D899 /* Debug */,
 				EA0032AF1B5E84D30011D899 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EA414F441B61604100331FF4 /* Build configuration list for PBXAggregateTarget "AutomaticBuildManyArchitectures" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA414F421B61604100331FF4 /* Debug */,
+				EA414F431B61604100331FF4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
